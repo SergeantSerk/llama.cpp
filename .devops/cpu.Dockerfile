@@ -60,7 +60,7 @@ RUN apt-get update \
     python3 \
     python3-pip \
     python3-venv \
-    python3 -m venv .venv
+    && python3 -m venv .venv
 
 ENV PATH="/app/.venv/bin:$PATH"
 
