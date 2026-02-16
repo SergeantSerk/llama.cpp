@@ -5,14 +5,11 @@ FROM ubuntu:$UBUNTU_VERSION AS build
 ARG TARGETARCH
 
 RUN apt-get update && \
-    apt-get install -y build-essential git cmake libssl-dev gcc-14 g++-14
+    apt-get install -y build-essential git cmake libssl-dev
 
 WORKDIR /app
 
 COPY . .
-
-ENV CC=gcc-14
-ENV CXX=g++-14
 
 RUN if [ "$TARGETARCH" = "amd64" ] || [ "$TARGETARCH" = "arm64" ]; then \
         cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DGGML_NATIVE=OFF -DLLAMA_BUILD_TESTS=OFF -DGGML_BACKEND_DL=ON -DGGML_CPU_ALL_VARIANTS=ON; \
