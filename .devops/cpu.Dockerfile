@@ -62,6 +62,7 @@ RUN apt-get update \
     python3-venv \
     && python3 -m venv .venv
 
+# Prepend path to newly created venv env
 ENV PATH="/app/.venv/bin:$PATH"
 
 RUN pip install --upgrade pip setuptools wheel \
