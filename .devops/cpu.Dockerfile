@@ -1,5 +1,4 @@
-ARG UBUNTU_VERSION=22.04
-ARG PYTHON_VERSION=3-slim
+ARG UBUNTU_VERSION=25.04
 
 FROM ubuntu:$UBUNTU_VERSION AS build
 
@@ -32,10 +31,10 @@ RUN mkdir -p /app/full \
     && cp .devops/tools.sh /app/full/tools.sh
 
 ## Base image
-FROM python:$PYTHON_VERSION AS base
+FROM ubuntu:$UBUNTU_VERSION AS base
 
 RUN apt-get update \
-    && apt-get install -y libgomp1 curl \
+    && apt-get install -y libgomp1 curl\
     && apt autoremove -y \
     && apt clean -y \
     && rm -rf /tmp/* /var/tmp/* \
